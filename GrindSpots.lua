@@ -119,15 +119,11 @@ end
 -- Event handling
 GrindSpotsFrame:RegisterEvent("PLAYER_LOGIN")
 GrindSpotsFrame:RegisterEvent("PLAYER_XP_UPDATE")
-GrindSpotsFrame:SetScript("OnEvent", function(self, event)
+GrindSpotsFrame:SetScript("OnEvent", function()
     if event == "PLAYER_LOGIN" or event == "PLAYER_XP_UPDATE" then
         CreateTabs()
     end
 end)
-
--- Initial update
-CreateTabs()
-
 
 
 -- Toggle Button
@@ -141,9 +137,11 @@ toggleButton:SetText("-")
 local isCollapsed = false
 toggleButton:SetScript("OnClick", function()
     if isCollapsed then
+        toggleButton:SetText("-")
         GrindSpotsFrame:SetHeight(150)
     else
-        GrindSpotsFrame:SetHeight(50)
+        GrindSpotsFrame:SetHeight(40)
+        toggleButton:SetText("+")
     end
     isCollapsed = not isCollapsed
 end)

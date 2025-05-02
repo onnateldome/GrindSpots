@@ -2,7 +2,7 @@
 ## Title: |cFFFF8080onna|rGrindSpots
 ## Notes: I caught myself constantly checking websites for grind spots, never remembering the locations—so I made this as a quick reference.
 ## Author: onnateldome
-## Version: 0.0.1
+## Version: 0.0.2
 ## SavedVariables:
 
 GrindSpotsData.lua
