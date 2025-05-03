@@ -34,17 +34,17 @@ local function UpdateGrindSpotsInfo(spots)
     local lines = {}
 
    if spots and next(spots) then
-        table.insert(lines, string.format("Grind Spot Information:\n"))
+        table.insert(lines, string.format("\n"))
 
         -- Loop through each matching grind spot and display its details
         for _, spot in ipairs(spots) do
             local line = string.format(
-                    "Levels: [%d - %d]\n" ..
-    "Zone: %s\n" ..
-    "Location: %s\n" ..
-    "Mobs: %s\n" ..
-    "XP: %s\n" ..
-    "Notes: %s",
+                "Levels: [%d - %d]\n" ..
+                "Zone: %s\n" ..
+                "Location: %s\n" ..
+                "Mobs: %s\n" ..
+                "XP: %s\n" ..
+                "Notes: %s",
                 spot.minLevel or 0,
                 spot.maxLevel or 0,
                 spot.zone or "N/A",
@@ -85,9 +85,16 @@ local function CreateTabs()
     for levelRange, spots in pairs(levelRanges) do
         -- Create a tab for the level range
         local tabButton = CreateFrame("Button", nil, GrindSpotsFrame, "OptionsButtonTemplate")
-        tabButton:SetWidth(80)
+        tabButton:SetWidth(70)
         tabButton:SetHeight(20)
-        tabButton:SetPoint("TOPLEFT", GrindSpotsFrame, "TOPLEFT", (tabIndex - 1) * 90 + 10, -10)
+        local tabsPerRow = 5
+        local row = math.floor((tabIndex - 1) / tabsPerRow)
+        local col = tabIndex - 1 - row * tabsPerRow
+        local tabX = col * 70 + 10
+        local tabY = -10 - (row * 25) -- adjust spacing between rows here
+
+tabButton:SetPoint("TOPLEFT", GrindSpotsFrame, "TOPLEFT", tabX, tabY)
+
         tabButton:SetText(levelRange)
 
         -- Store the grind spot data for the level range in the button
@@ -140,7 +147,7 @@ toggleButton:SetScript("OnClick", function()
         toggleButton:SetText("-")
         GrindSpotsFrame:SetHeight(150)
     else
-        GrindSpotsFrame:SetHeight(40)
+        GrindSpotsFrame:SetHeight(60)
         toggleButton:SetText("+")
     end
     isCollapsed = not isCollapsed
