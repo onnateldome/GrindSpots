@@ -118,9 +118,9 @@ end
 
 -- Event handling
 GrindSpotsFrame:RegisterEvent("PLAYER_LOGIN")
-GrindSpotsFrame:RegisterEvent("PLAYER_XP_UPDATE")
+GrindSpotsFrame:RegisterEvent("PLAYER_LEVEL_UP")
 GrindSpotsFrame:SetScript("OnEvent", function()
-    if event == "PLAYER_LOGIN" or event == "PLAYER_XP_UPDATE" then
+    if event == "PLAYER_LOGIN" or event == "PLAYER_LEVEL_UP" then
         CreateTabs()
     end
 end)
